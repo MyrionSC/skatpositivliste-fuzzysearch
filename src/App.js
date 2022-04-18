@@ -16,7 +16,7 @@ function App() {
                 return response.json();
             })
             .then(function (result) {
-                setListToShow(result)
+                setListToShow(result.slice(0,500))
                 setPositivListe(result.map(o => {
                     return {
                         ...o,
@@ -25,7 +25,6 @@ function App() {
                     }
                 }))
             });
-
     }, [])
 
     let [positivListe, setPositivListe] = useState([])
@@ -52,13 +51,15 @@ function App() {
         timeout = setTimeout(() => {
             const val = e.target.value
             if (isBlank(val)) {
-                setListToShow(positivListe)
+                setListToShow(positivListe.slice(0,500))
                 return;
             }
-            var resultList = fuzzysort.go(e.target.value, positivListe,
+            let resultList = fuzzysort.go(e.target.value, positivListe,
                 {keys: ["taxCountry", "ISIN_kode", "Navn", "LEI_kode", "ASIDENT", "CVR_SE_TIN", "Navn__1", "Første_registreringsår"]})
+            if (resultList.length > 500)
+                resultList = resultList.slice(0,500)
             setListToShow(getHighligtedList(resultList))
-        }, 50)
+        }, 200)
     }
 
     function isBlank(str) {
@@ -97,7 +98,7 @@ function App() {
                 {listToShow.map((o, i) =>
                     <tr key={i}>
                         <td><RawHTML>{o.Registreringland}</RawHTML></td>
-                        <td><RawHTML>{o.ISIN_kode}</RawHTML></td>
+                        <td><a href={`https://www.google.com/search?q=nordnet+${o.ISIN_kode}`}><RawHTML>{o.ISIN_kode}</RawHTML></a></td>
                         <td><RawHTML>{o.Navn}</RawHTML></td>
                         <td><RawHTML>{o.LEI_kode}</RawHTML></td>
                         <td><RawHTML>{o.ASIDENT}</RawHTML></td>
