@@ -19,5 +19,11 @@ td, th {
 input {
     padding: 4px;
     margin-bottom: 1em;
-    width: 400px;
+    width: 300px;
+}
+
+@media (max-width: 600px) {
+    .hidden-mobile {
+        display: none;
+    }
 }

@@ -83,28 +83,28 @@ function App() {
             <table>
                 <thead>
                 <tr>
-                    <th>Registreringsland /Skattemæssigt hjemsted</th>
+                    <th className={'hidden-mobile'}>Registreringsland /Skattemæssigt hjemsted</th>
                     <th>ISIN-kode</th>
                     <th>Navn</th>
-                    <th>LEI kode</th>
-                    <th>ASIDENT</th>
-                    <th>CVR/SE/TIN</th>
-                    <th>Navn</th>
-                    <th>Første registreringsår</th>
+                    <th className={'hidden-mobile'}>LEI kode</th>
+                    <th className={'hidden-mobile'}>ASIDENT</th>
+                    <th className={'hidden-mobile'}>CVR/SE/TIN</th>
+                    <th className={'hidden-mobile'}>Navn</th>
+                    <th className={'hidden-mobile'}>Første registreringsår</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 {listToShow.map((o, i) =>
                     <tr key={i}>
-                        <td><RawHTML>{o.Registreringland}</RawHTML></td>
+                        <td className={'hidden-mobile'}><RawHTML>{o.Registreringland}</RawHTML></td>
                         <td><a href={`https://www.google.com/search?q=nordnet+${o.ISIN_kode}`}><RawHTML>{o.ISIN_kode}</RawHTML></a></td>
                         <td><RawHTML>{o.Navn}</RawHTML></td>
-                        <td><RawHTML>{o.LEI_kode}</RawHTML></td>
-                        <td><RawHTML>{o.ASIDENT}</RawHTML></td>
-                        <td><RawHTML>{o.CVR_SE_TIN}</RawHTML></td>
-                        <td><RawHTML>{o.Navn__1}</RawHTML></td>
-                        <td><RawHTML>{o.Første_registreringsår}</RawHTML></td>
+                        <td className={'hidden-mobile'}><RawHTML>{o.LEI_kode}</RawHTML></td>
+                        <td className={'hidden-mobile'}><RawHTML>{o.ASIDENT}</RawHTML></td>
+                        <td className={'hidden-mobile'}><RawHTML>{o.CVR_SE_TIN}</RawHTML></td>
+                        <td className={'hidden-mobile'}><RawHTML>{o.Navn__1}</RawHTML></td>
+                        <td className={'hidden-mobile'}><RawHTML>{o.Første_registreringsår}</RawHTML></td>
                     </tr>
                 )}
                 </tbody>
