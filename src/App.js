@@ -50,11 +50,13 @@ function App() {
     return (
         <div className="App">
 
+            <p>Fuzzy search i skats positivliste</p>
+
             <p>Baseret på <a href="https://skat.dk/getfile.aspx?id=148572&type=xlsx">Liste over aktiebaserede
                 investeringsselskaber 2022</a> som kan findes på <a href="https://skat.dk/skat.aspx?oid=2244641">Skat.dk:
                 Beviser og aktier i investeringsforeninger og selskaber (IFPA)</a></p>
 
-            <input onChange={(e) => fuzzyMatchList(e)}/>
+            <input autoFocus onChange={(e) => fuzzyMatchList(e)}/>
 
             <table>
                 <thead>

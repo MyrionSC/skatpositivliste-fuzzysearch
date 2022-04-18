@@ -1,20 +1,22 @@
 .App {
-  text-align: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
 }
 
-
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }
 
-/*tr:nth-child(even) {*/
-/*  background-color: #dddddd;*/
-/*}*/
+input {
+    padding: 4px;
+    margin-bottom: 1em;
+    width: 400px;
+}
