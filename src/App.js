@@ -30,17 +30,23 @@ function App() {
 
     let [positivListe, setPositivListe] = useState([])
     let [listToShow, setListToShow] = useState([])
+    let timeout;
 
     function fuzzyMatchList(e: ChangeEvent<HTMLInputElement>) {
-        const val = e.target.value
-        if (isBlank(val)) {
-            setListToShow(positivListe)
-            return;
-        }
-        var resultList = fuzzysort.go(e.target.value, positivListe,
-            {keys: ["taxCountry", "ISIN_kode", "Navn", "LEI_kode", "ASIDENT", "CVR_SE_TIN", "Navn__1", "Første_registreringsår"]})
-        console.log(resultList)
-        setListToShow(resultList.map(r => r.obj))
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            let start = Date.now()
+            const val = e.target.value
+            if (isBlank(val)) {
+                setListToShow(positivListe)
+                return;
+            }
+            var resultList = fuzzysort.go(e.target.value, positivListe,
+                {keys: ["taxCountry", "ISIN_kode", "Navn", "LEI_kode", "ASIDENT", "CVR_SE_TIN", "Navn__1", "Første_registreringsår"]})
+            console.log(resultList)
+            setListToShow(resultList.map(r => r.obj))
+            console.log(`time spent: ${Date.now() - start}`)
+        }, 50)
     }
 
     function isBlank(str) {
@@ -50,7 +56,7 @@ function App() {
     return (
         <div className="App">
 
-            <p>Fuzzy search i skats positivliste</p>
+            <p style={{fontSize: "1.15rem"}}>Fuzzy search i skats positivliste</p>
 
             <p>Baseret på <a href="https://skat.dk/getfile.aspx?id=148572&type=xlsx">Liste over aktiebaserede
                 investeringsselskaber 2022</a> som kan findes på <a href="https://skat.dk/skat.aspx?oid=2244641">Skat.dk:
@@ -87,8 +93,6 @@ function App() {
                 )}
                 </tbody>
             </table>
-
-
         </div>
     );
 }
